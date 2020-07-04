@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:td="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--创建数据源对象-->
+    <bean class="com.alibaba.druid.pool.DruidDataSource" id="dataSource">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/ssm"></property>
+        <property name="username" value="root"></property>
+        <property name="password" value="123456"></property>
+    </bean>
+    <!--创建sqlSessionFactory-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="mapperLocations" value="classpath:com/tz/leo/spring/mapper/*.xml"></property>
+        <property name="typeAliasesPackage" value="com.tz.leo.spring.entity"></property>
+    </bean>
+    <!--创建DAO对象-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+        <property name="basePackage" value="com.tz.leo.spring.dao"></property>
+    </bean>
+    <!--创建事务管理器-->
+    <bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <!--根据事务管理器生成一个事务的环绕通知-->
+    <td:advice transaction-manager="transactionManager" id="txAdvice">
+        <td:attributes>
+            <td:method name="save*"/>
+            <td:method name="update*"/>
+            <td:method name="delete*"/>
+            <td:method name="select*" propagation="SUPPORTS"/>
+        </td:attributes>
+    </td:advice>
+    <!--组装事务的切面-->
+    <aop:config >
+        <aop:pointcut id="pc" expression="within(com.tz.leo.spring.service.*ServiceImpl)"></aop:pointcut>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="pc"></aop:advisor>
+    </aop:config>
+
+    <bean class="com.tz.leo.spring.service.UserServiceImpl" id="userService">
+        <property name="userDao" ref="userDao"></property>
+    </bean>
+
+    <bean class="com.tz.leo.spring.action.UserAction" id="userAction" scope="prototype">
+        <property name="userService" ref="userService"></property>
+    </bean>
+
+
+
+
+</beans>
