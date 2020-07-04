@@ -80,3 +80,22 @@ src/main/java/com/tz/leo/spring/entity/User
 1.5 测试struts路由是否正确
     按照struts.xml配置文件的配置，更改url参数 为 http://localhost:8080/ssm/user/findAll
     resources/struts.xml 中的内容如下所示
+
+#############   相关sql   #############
+
+
+CREATE DATABASE ssm;
+
+use ssm;
+
+CREATE TABLE user
+(
+Id int,
+name varchar(255),
+age int,
+bir date
+);
+
+use ssm;
+insert INTO USER VALUES (1,'zhangsan',11,'2020/11/11');
+insert INTO USER VALUES (2,'lisi',22,'2020/12/12');
