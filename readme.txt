@@ -1,3 +1,4 @@
+ssm   spring  struts2  mybatis  xml配置文件方式实现控制器反转及依赖注入
 
 地址
 https://github.com/wei198621/spring_ssm.git
