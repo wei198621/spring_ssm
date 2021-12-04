@@ -6,10 +6,11 @@
 
     <!--创建数据源对象-->
     <bean class="com.alibaba.druid.pool.DruidDataSource" id="dataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-        <property name="url" value="jdbc:mysql://localhost:3306/ssm"></property>
+        <!--<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>-->
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://leoaliyun:3306/local_ssm?useUnicode=true"></property>
         <property name="username" value="root"></property>
-        <property name="password" value="123456"></property>
+        <property name="password" value="root"></property>
     </bean>
     <!--创建sqlSessionFactory-->
     <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
