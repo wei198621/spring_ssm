@@ -75,10 +75,18 @@
       <version>4.3.2.RELEASE</version>
     </dependency>
 
+
+    <!-- mysql 5.0-->
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>5.1.38</version>
+    </dependency>
+    <!-- mysql 8.0-->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.13</version>
     </dependency>
 
     <dependency>

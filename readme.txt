@@ -79,7 +79,7 @@ src/main/java/com/tz/leo/spring/entity/User
 #############   09 启动tomcat容器启动ssm项目   #############
 1. 配置tomcat 容器，启动项目
 1.1 状态栏点击 edit Configuration （启动按钮旁边）,弹出Run/Debug Configurations
-1.2 点击 + ，新增 tomcat 容器  （本地测试用的是 jdk 1.7/ Tomcat8.0.35 ）
+1.2 点击 + ，新增 tomcat 容器  （本地测试用的是 jdk 1.8/ Tomcat8.0.35 ）
 1.3  配置名称如  spring_ssm_annotaion
 1.4 shift+F10 启动此项目 http://localhost:8080/ssm
     默认显示webapp/index.jsp 下面的目录
